@@ -24,6 +24,7 @@ script: "bengfort/manage.py test"
 # Create Databases before tests
 before_script:
     - psql -c "CREATE ROLE django WITH LOGIN CREATEDB PASSWORD '$b34rfamilyR1VER$';" -U postgres
+    - psql -c "CREATE DATABASE bengfort WITH OWNER django;" -U postgres
 
 # Django environment
 env:
