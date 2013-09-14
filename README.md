@@ -1,4 +1,4 @@
-bengfort.com
+Bengfort.com
 ============
 
-The web application for the Bengfort website
+The web application for the Bengfort website.
