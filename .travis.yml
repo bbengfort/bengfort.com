@@ -1,0 +1,38 @@
+# travis.yml
+# Travis configuration file
+#
+# Author:   Benjamin Bengfort <benjamin@bengfort.com>
+# Created:  Sat Sep 14 14:51:08 2013 -0400
+#
+# Copyright (C) 2013 Bengfort.com
+# For license information, see LICENSE.txt
+#
+# ID: .travis.yml [] benjamin@bengfort.com $
+
+# Langauge and versions
+language: python
+python:
+    - "2.7"
+
+# Installation script
+install:
+    - "pip install -r requirements.txt --use-mirrors"
+
+# Run the tests
+script: "bengfort/manage.py test"
+
+# Create Databases before tests
+before_script:
+    - psql -c "CREATE ROLE django WITH LOGIN CREATEDB PASSWORD '$b34rfamilyR1VER$';" -U postgres
+
+# Django environment
+env:
+    - DJANGO_SETTINGS_MODULE="bengfort.settings"
+
+# Testing notifications
+notifications:
+    email:
+        recipients:
+            - benjamin@bengfort.com
+        on_success: always
+        on_failure: always
