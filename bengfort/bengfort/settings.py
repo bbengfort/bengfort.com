@@ -1,4 +1,30 @@
-# Django settings for bengfort project.
+# bengfort.settings
+# Django settings for Bengfort project.
+#
+# Author:   Benjamin Bengfort <benjamin@bengfort.com>
+# Created:  Sat Sep 14 16:42:02 2013 -0400
+#
+# Copyright (C) 2013 Bengfort.com
+# For license information, see LICENSE.txt
+#
+# ID: settings.py [] benjamin@bengfort.com $
+
+"""
+The main, global settings for the Bengfort project. Put deployment or
+host-baed settings in a file in the same directory called
+`local_settings.py` but note that file won't be committed with the repo.
+"""
+
+##########################################################################
+## Imports
+##########################################################################
+
+import os
+
+##########################################################################
+## Settings
+##########################################################################
+
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -9,12 +35,16 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
+# Get absolute paths for the project to compute locations
+PROJECT_PATH = os.path.realpath(os.path.dirname(__file__))
+ROOT_PATH = os.path.realpath(os.path.join(PROJECT_PATH, ".."))
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'bengfort',
         'USER': 'django',
-        'PASSWORD': '$b34rfamilyR1VER$',
+        'PASSWORD': 'tr4v1sT3ST3R!',
         'HOST': 'localhost',
         'PORT': '',
         'TEST_NAME': 'bengfort_testing',
@@ -23,13 +53,13 @@ DATABASES = {
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = ['bengfort.com', '.bengfort.com']
+ALLOWED_HOSTS = ['.bengfort.com']
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
 # In a Windows environment this must be set to your system time zone.
-TIME_ZONE = 'America/Chicago'
+TIME_ZONE = 'America/New_York'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
@@ -55,7 +85,7 @@ MEDIA_ROOT = ''
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://example.com/media/", "http://media.example.com/"
-MEDIA_URL = ''
+MEDIA_URL = '/media/'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
@@ -72,6 +102,7 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    os.path.join(ROOT_PATH, 'static'),
 )
 
 # List of finder classes that know how to find static files in
@@ -83,7 +114,7 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = 'fgs6nno8g13&p-yq7^kn84zlx&n0@v%d+4^=q=+m=r#52jpx3i'
+SECRET_KEY = None
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -111,6 +142,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    os.path.join(ROOT_PATH, 'templates'),
 )
 
 INSTALLED_APPS = (
@@ -120,10 +152,10 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # Uncomment the next line to enable the admin:
-    # 'django.contrib.admin',
-    # Uncomment the next line to enable admin documentation:
-    # 'django.contrib.admindocs',
+
+    # The admin site apps
+    'grappelli',
+    'django.contrib.admin',
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
@@ -156,3 +188,22 @@ LOGGING = {
         },
     }
 }
+
+# Email Configuration
+# Gmail specific settings should be added to local_settings
+SERVER_EMAIL = ''
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_PORT = 587
+
+# Grappelli specific settings for dashboards and admin.
+GRAPPELLI_ADMIN_TITLE = 'Bengfort Site Admin'
+
+# This file contains the settings that work for everyone.
+# To override a setting create a local_settings.py file and put your overrides there.
+try:
+    from local_settings import *
+except ImportError:
+    pass
