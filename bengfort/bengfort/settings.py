@@ -153,6 +153,9 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # Internal site apps
+    'spotlight',
+
     # The admin site apps
     'grappelli',
     'django.contrib.admin',
@@ -188,6 +191,9 @@ LOGGING = {
         },
     }
 }
+
+# The Custome User model
+AUTH_PROFILE_MODEL = 'spotlight.Profile'
 
 # Email Configuration
 # Gmail specific settings should be added to local_settings
