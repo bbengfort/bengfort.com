@@ -10,7 +10,7 @@
 # ID: models.py [] benjamin@bengfort.com $
 
 """
-User profile models for the Spotlight pap.
+User profile models for the Spotlight app.
 """
 
 ##########################################################################

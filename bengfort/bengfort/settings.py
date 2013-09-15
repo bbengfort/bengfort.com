@@ -193,7 +193,7 @@ LOGGING = {
 }
 
 # The Custome User model
-AUTH_PROFILE_MODEL = 'spotlight.Profile'
+AUTH_PROFILE_MODULE = 'spotlight.Profile'
 
 # Email Configuration
 # Gmail specific settings should be added to local_settings
