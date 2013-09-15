@@ -17,7 +17,7 @@ from django.test import TestCase
 from django.contrib.auth.models import User
 from spotlight.models import Profile, Author
 
-class SpotlightTest(TestCase):
+class SpotlightModelTest(TestCase):
 
     def test_user_post_save_profile(self):
         """
@@ -39,3 +39,28 @@ class SpotlightTest(TestCase):
 
         # Assert that a profile exists for the user
         self.assertTrue(Profile.objects.filter(user=user).exists())
+
+class SpotlightViewTest(TestCase):
+
+    fixtures = ['benjamin.json', 'users.json']
+
+    def test_profile_get(self):
+        """
+        Assert a profile is viewable if it exists in DB
+        """
+        resp = self.client.get('/benjamin/')
+        self.assertEqual(resp.status_code, 200)
+
+    def test_profile_context(self):
+        """
+        Assert context is delivering an object
+        """
+        resp = self.client.get('/benjamin/')
+        self.assertIn('object', resp.context)
+
+    def test_profile_instance(self):
+        """
+        Assert a context is delivering an Author
+        """
+        resp = self.client.get('/benjamin/')
+        self.assertTrue(isinstance(resp.context['object'], Author))

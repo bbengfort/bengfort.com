@@ -36,7 +36,7 @@ class Profile(models.Model):
 
     @property
     def gravatar(self):
-        size    = 120
+        size    = 200
         default = "mm"
         digest  = hashlib.md5(self.user.email.lowe()).hexdigest()
         params  = urllib.urlencode({'d': default, 's': str(size)})
@@ -61,7 +61,7 @@ class Profile(models.Model):
 
     class Meta:
         verbose_name = _('profile')
-        verbose_name_plural = _('profiles')
+        verbose_name_plural = _('profile')
 
 class ProfileLink(models.Model):
 
@@ -134,7 +134,7 @@ class Author(User):
 
     @property
     def gravatar(self):
-        size    = 120
+        size    = 200
         default = "mm"
         digest  = hashlib.md5(self.email.lower()).hexdigest()
         params  = urllib.urlencode({'d':default, 's':str(size)})
@@ -151,6 +151,9 @@ class Author(User):
 
     def get_author(self):
         return Author.objects.get(pk=self.pk)
+
+    def __unicode__(self):
+        return self.full_name
 
     class Meta:
         proxy= True

@@ -28,8 +28,9 @@ from django.contrib.auth.models import User
 def create_profile(sender, instance, signal, created, **kwargs):
     """
     When a user is created, also create a matching profile.
+    If raw is set, this is being loaded from a fixture, so ignore.
     """
-    if created:
+    if created and not kwargs.get('raw', False):
         Profile(user=instance).save()
 
 ##########################################################################
