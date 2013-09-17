@@ -20,7 +20,13 @@
             </div>
             <div class="span9">
                 <h1>{{ object.full_name }}</h1>
+
+                {% if object.profile.shortbio %}
                 <p class="tagline">{{ object.profile.shortbio }}</p>
+                {% else %}
+                <p class="tagline">No tagline yet</p>
+                {% endif %}
+
                 {% if object.profile.biography %}
                 {{ object.profile.biography }}
                 {% else %}

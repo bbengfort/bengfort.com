@@ -155,6 +155,7 @@ INSTALLED_APPS = (
 
     # Internal site apps
     'spotlight',
+    'scribe',
 
     # The admin site apps
     'grappelli',
