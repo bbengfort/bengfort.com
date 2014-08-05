@@ -29,6 +29,7 @@ before_script:
 # Django environment
 env:
     - DJANGO_SETTINGS_MODULE="bengfort.settings.testing"
+    - SECRET_KEY="supersecretsauce"
 
 # Testing notifications
 notifications:
