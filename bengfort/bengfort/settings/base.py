@@ -24,6 +24,7 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 ##########################################################################
 
 import os
+from django.conf import global_settings
 
 ##########################################################################
 ## Helper function for environmental settings
@@ -83,6 +84,7 @@ TEMPLATE_DEBUG = True
 
 ## Hosts
 ALLOWED_HOSTS  = []
+INTERNAL_IPS   = ('127.0.0.1', '198.168.1.10')
 
 ## WSGI Configuration
 ROOT_URLCONF     = 'bengfort.urls'
@@ -90,22 +92,46 @@ WSGI_APPLICATION = 'bengfort.wsgi.application'
 
 ## Application definition
 INSTALLED_APPS = (
-    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    ## Third party apps
+    'south',
+    'compressor',
+    'taggit',
+    'modelcluster',
+    'django.contrib.admin',
+
+    ## Wagtail apps
+    'wagtail.wagtailcore',
+    'wagtail.wagtailadmin',
+    'wagtail.wagtaildocs',
+    'wagtail.wagtailsnippets',
+    'wagtail.wagtailusers',
+    'wagtail.wagtailimages',
+    'wagtail.wagtailembeds',
+    'wagtail.wagtailsearch',
+    'wagtail.wagtailredirects',
+    'wagtail.wagtailforms',
+
+    ## Bengfort.com apps
+    'scribe',
 )
 
 ## Request Handling
 MIDDLEWARE_CLASSES = (
-    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'wagtail.wagtailcore.middleware.SiteMiddleware',
+    'wagtail.wagtailredirects.middleware.RedirectMiddleware',
 )
 
 ## Internationalization
@@ -115,6 +141,10 @@ TIME_ZONE     = 'America/New_York'
 USE_I18N      = True
 USE_L10N      = True
 USE_TZ        = True
+
+## Auth settings
+LOGIN_URL = 'django.contrib.auth.views.login'
+LOGIN_REDIRECT_URL = 'wagtailadmin_home'
 
 ##########################################################################
 ## Content (Static, Media, Templates)
@@ -127,15 +157,25 @@ STATIC_URL          = '/static/'
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder',
 )
 
 STATICFILES_DIRS    = (
     os.path.join(PROJECT_DIR, 'static'),
 )
 
+## Compressor Settings
+COMPRESS_PRECOMPILERS = (
+    ('text/x-scss', 'django_libsass.SassCompiler'),
+)
+
 ## Template Files.
 TEMPLATE_DIRS       = (
     os.path.join(PROJECT_DIR, 'templates'),
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
+    'django.core.context_processors.request',
 )
 
 ## Uploaded Media
@@ -153,8 +193,9 @@ SERVER_EMAIL    = 'Dakota <server@bengfort.com>'
 EMAIL_USE_TLS   = True
 EMAIL_HOST      = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'server@bengfort.com'
-EMAIL_HOST_PASSWORD = environ_setting("EMAIL_HOST_PASSWORD")
+EMAIL_HOST_PASSWORD  = environ_setting("EMAIL_HOST_PASSWORD")
 EMAIL_PORT      = 587
+EMAIL_SUBJECT_PREFIX = '[Bengfort.com]'
 
 ##########################################################################
 ## AWS Access Keys
@@ -165,3 +206,12 @@ AWS_SECRET_ACCESS_KEY   = environ_setting('AWS_SECRET_KEY', '')
 AWS_STORAGE_BUCKET_NAME = environ_setting('AWS_S3_BUCKET', 'bengfort')
 AWS_QUERYSTRING_AUTH    = True
 AWS_DEFAULT_ACL         = 'private'
+
+##########################################################################
+## Wagtail Settings
+##########################################################################
+
+WAGTAIL_SITE_NAME = 'Bengfort.com'
+
+## Override the search results template for wagtailsearch
+WAGTAILSEARCH_RESULTS_TEMPLATE = 'search_results.html'

@@ -36,3 +36,6 @@ SECRET_KEY = 'cyt*c1@%sg6j@g6y9fdrd@iakg7)ek!dqb@7grl(c-nkm%2596'
 
 ## Content
 MEDIA_ROOT       = os.path.join(PROJECT_DIR, 'media')
+
+## Compressed Static Files
+STATIC_ROOT = os.path.join(PROJECT_DIR, 'static', '_build')
