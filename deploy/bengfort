@@ -26,41 +26,9 @@ server {
     # Locations and Root
     root /var/www/bengfort.com/;
 
-    location /media {
-        # Ensure that uploaded media is available at /media/ url.
-        # Media continues to be available during downtime.
-        alias       /var/www/bengfort.com/media;
-        access_log  off;
-        expires     30d;
-    }
-
-    location /static {
-        # Allow static content served at /static/ url.
-        # Content continues to ve available during downtime.
-        alias       /var/www/bengfort.com/static;
-        access_log  off;
-        expires     30d;
-    }
-
-    location /favicon.ico {
-        # Allow less intelligent browsers to still get favicon.
-        alias       /var/www/bengfort.com/static/img/favicon.ico;
-        access_log  off;
-        expires     30d;
-    }
-
-    location /humans.txt {
-        # Ensure that humans.txt is in the site root.
-        alias       /var/www/bengfort.com/static/humans.txt;
-        access_log  off;
-        expires     30d;
-    }
-
-    location /robots.txt {
-        # Ensure that robots.txt is in the site root.
-        alias       /var/www/bengfort.com/static/robots.txt;
-        access_log  off;
-        expires     30d;
+    location / {
+        # Checks for static file, if not found, proxy to app
+        try_files $uri @django;
     }
 
     # Maintenance Mode Settings
@@ -74,7 +42,7 @@ server {
     }
 
     # Finally, the Django App!
-    location / {
+    location @django {
         # If there is a file called downtime in the public directory, go
         # into maintenance mode and return downtime page if exists.
         if (-f /var/www/downtime) {
@@ -83,12 +51,13 @@ server {
 
         # uWSGI Settings
         uwsgi_pass 127.0.0.1:3212;
-        proxy_set_header    Host                $host;
+        proxy_set_header    Host                $http_host;
         proxy_set_header    X-Real-IP           $remote_addr;
         proxy_set_header    X-Forwarded-For     $proxy_add_x_forwarded_for;
         proxy_set_header    X-Forwarded-Proto   $http_x_forwarded_proto;
         add_header          X-Cache-Status      $upstream_cache_status;
 
+        proxy_redirect off;
         include uwsgi_params;
     }
 }
