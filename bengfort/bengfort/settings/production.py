@@ -33,14 +33,13 @@ ALLOWED_HOSTS    = ['bengfort.com',
                     'localhost', '127.0.0.1']
 
 ## Static files served by Nginx
-STATIC_ROOT = '/var/www/stacks/static'
-MEDIA_ROOT  = '/var/www/stacks/media'
+STATIC_ROOT = '/var/www/bengfort.com/static'
+MEDIA_ROOT  = '/var/www/bengfort.com/media'
 
 ## Application Environment
 INSTALLED_APPS+= (
     'djcelery',
     'kombu.transport.django',
-    'gunicorn',
 )
 
 ##########################################################################
