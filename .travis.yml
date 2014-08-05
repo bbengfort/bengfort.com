@@ -14,6 +14,15 @@ language: python
 python:
     - "2.7"
 
+# Services
+services:
+    - redis
+    - elasticsearch
+
+# Specify Postgres version
+addons:
+  postgresql: "9.3"
+
 # Installation script
 install:
     - "pip install -r requirements.txt"
@@ -28,9 +37,10 @@ before_script:
 
 # Django environment
 env:
-    - DJANGO_SETTINGS_MODULE="bengfort.settings.testing"
-    - SECRET_KEY="supersecretsauce"
-    - EMAIL_HOST_PASSWORD="knockknockknock"
+    global:
+        - DJANGO_SETTINGS_MODULE="bengfort.settings.testing"
+        - SECRET_KEY="supersecretsauce"
+        - EMAIL_HOST_PASSWORD="knockknockknock"
 
 # Testing notifications
 notifications:
