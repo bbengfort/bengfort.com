@@ -1,6 +1,11 @@
-Bengfort.com
-============
+# Bengfort.com [![Build Status][travis.png]][travis] #
+**The web application for the Bengfort website.**
 
-[![Build Status](https://travis-ci.org/bbengfort/bengfort.com.png?branch=master)](https://travis-ci.org/bbengfort/bengfort.com)
+[![Programming][wallpaper]][wallpaper]
 
-The web application for the Bengfort website.
+
+<!-- References -->
+
+[wallpaper]: docs/images/wallpaper.jpg
+[travis.png]: https://travis-ci.org/bbengfort/bengfort.com.png?branch=master
+[travis]: https://travis-ci.org/bbengfort/bengfort.com
