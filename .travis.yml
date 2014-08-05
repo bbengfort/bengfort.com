@@ -30,6 +30,7 @@ before_script:
 env:
     - DJANGO_SETTINGS_MODULE="bengfort.settings.testing"
     - SECRET_KEY="supersecretsauce"
+    - EMAIL_HOST_PASSWORD="knockknockknock"
 
 # Testing notifications
 notifications:
