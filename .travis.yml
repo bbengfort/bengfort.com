@@ -16,10 +16,10 @@ python:
 
 # Installation script
 install:
-    - "pip install -r requirements.txt --use-mirrors"
+    - "pip install -r requirements.txt"
 
 # Run the tests
-script: "bengfort/manage.py test spotlight scribe"
+script: "make test"
 
 # Create Databases before tests
 before_script:
@@ -28,7 +28,7 @@ before_script:
 
 # Django environment
 env:
-    - DJANGO_SETTINGS_MODULE="bengfort.settings"
+    - DJANGO_SETTINGS_MODULE="bengfort.settings.testing"
 
 # Testing notifications
 notifications:
