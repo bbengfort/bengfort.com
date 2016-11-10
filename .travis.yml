@@ -12,35 +12,40 @@
 # Langauge and versions
 language: python
 python:
-    - "2.7"
+    - "3.5"
 
-# Services
-services:
-    - redis
-    - elasticsearch
-
-# Specify Postgres version
-addons:
-  postgresql: "9.3"
+# Install testing utilities
+before_install:
+    - pip install nose coverage coveralls
 
 # Installation script
 install:
     - "pip install -r requirements.txt"
 
-# Run the tests
-script: "make test"
+# Specify Postgres version
+addons:
+  postgresql: "9.4"
 
 # Create Databases before tests
 before_script:
-    - psql -c "CREATE ROLE django WITH LOGIN CREATEDB PASSWORD 'tr4v1sT3ST3R!';" -U postgres
-    - psql -c "CREATE DATABASE bengfort WITH OWNER django;" -U postgres
+    - psql -c "CREATE DATABASE bengfort;" -U postgres
+
+# Run the tests
+script: "make test"
+
+# After the test
+after_success: coveralls
 
 # Django environment
 env:
     global:
         - DJANGO_SETTINGS_MODULE="bengfort.settings.testing"
         - SECRET_KEY="supersecretsauce"
-        - EMAIL_HOST_PASSWORD="knockknockknock"
+        - DATABASE_URL=postgres://localhost/bengfort
+        - EMAIL_HOST_USER=''
+        - EMAIL_HOST_PASSWORD=''
+        - GOOGLE_OAUTH2_KEY=''
+        - GOOGLE_OAUTH2_SECRET=''
 
 # Testing notifications
 notifications:
