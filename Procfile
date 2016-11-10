@@ -1,1 +1,1 @@
-web: gunicorn partisan.wsgi --log-file -
+web: gunicorn bengfort.wsgi --log-file -
