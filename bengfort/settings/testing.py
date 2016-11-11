@@ -7,7 +7,7 @@
 # Copyright (C) 2016 Bengfort.com
 # For license information, see LICENSE.txt
 #
-# ID: testing.py [] benjamin@bengfort.com $
+# ID: testing.py [11b57d0] benjamin@bengfort.com $
 
 """
 Testing settings to enable testing on Travis with Django tests.

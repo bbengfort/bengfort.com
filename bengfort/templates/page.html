@@ -1,8 +1,12 @@
 {% extends "base.html" %}
+{% load bengfort_tags %}
 
 {% block body %}
 
-  {% include 'components/navbar.html' %}
+  {% block menu %}
+      {% get_site_root as site_root %}
+      {% navbar parent=site_root calling_page=self %}
+  {% endblock %}
 
   <div class="container">
     {% block content %}{% endblock %}

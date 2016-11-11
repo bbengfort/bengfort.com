@@ -37,3 +37,6 @@ nosetests.xml
 
 # Local environment files
 .env
+
+# Development assets
+bengfort/media

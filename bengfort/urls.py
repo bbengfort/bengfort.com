@@ -7,7 +7,7 @@
 # Copyright (C) 2016 Bengfort.com
 # For license information, see LICENSE.txt
 #
-# ID: urls.py [] benjamin@bengfort.com $
+# ID: urls.py [11b57d0] benjamin@bengfort.com $
 
 """
 Application URL definition and routers.
@@ -34,31 +34,47 @@ Including another URLconf
 ## Imports
 ##########################################################################
 
-from django.conf import settings
-from django.conf.urls import include, url
 from django.contrib import admin
+from django.conf import settings
+from rest_framework import routers
+from django.conf.urls import include, url
 
 from search import views as search_views
 from wagtail.wagtailadmin import urls as wagtailadmin_urls
 from wagtail.wagtailcore import urls as wagtail_urls
 from wagtail.wagtaildocs import urls as wagtaildocs_urls
 
+from bengfort.views import *
+
+
 ##########################################################################
 ## Endpoint Discovery
 ##########################################################################
+
+## API
+router = routers.DefaultRouter()
+router.register(r'status', HeartbeatViewSet, "status")
+
 
 ##########################################################################
 ## URL Patterns
 ##########################################################################
 
 urlpatterns = [
+    # The regular Django Admin
     url(r'^django-admin/', include(admin.site.urls)),
 
+    # Wagtail CMS
     url(r'^admin/', include(wagtailadmin_urls)),
     url(r'^documents/', include(wagtaildocs_urls)),
 
+    # Wagtail Search
     url(r'^search/$', search_views.search, name='search'),
 
+    # REST API
+    url(r'^api/', include(router.urls, namespace='api')),
+
+    # CMS endpoints !important: must be last
     url(r'', include(wagtail_urls)),
 ]
 

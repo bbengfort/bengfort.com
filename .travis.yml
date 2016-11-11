@@ -7,7 +7,7 @@
 # Copyright (C) 2013 Bengfort.com
 # For license information, see LICENSE.txt
 #
-# ID: .travis.yml [] benjamin@bengfort.com $
+# ID: .travis.yml [da7003b] benjamin@bengfort.com $
 
 # Langauge and versions
 language: python

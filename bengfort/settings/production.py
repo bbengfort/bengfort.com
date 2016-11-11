@@ -7,7 +7,7 @@
 # Copyright (C) 2016 Bengfort.com
 # For license information, see LICENSE.txt
 #
-# ID: bengfort.settings.production.py [] benjamin@bengfort.com $
+# ID: production.py [11b57d0] benjamin@bengfort.com $
 
 """
 Settings for Bengfort.com in production.
