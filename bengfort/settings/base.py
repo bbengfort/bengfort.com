@@ -122,6 +122,7 @@ INSTALLED_APPS = [
     # Third party apps
     'modelcluster',
     'taggit',
+    'rest_framework',
 
     # Django apps
     'django.contrib.admin',
