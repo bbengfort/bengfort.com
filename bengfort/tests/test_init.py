@@ -7,7 +7,7 @@
 # Copyright (C) 2016 Bengfort.com
 # For license information, see LICENSE.txt
 #
-# ID: test_init.py [] benjamin@bengfort.com $
+# ID: test_init.py [8fcbaab] benjamin@bengfort.com $
 
 """
 Initialization tests for the Bengfort.com project.
@@ -23,7 +23,7 @@ from unittest import TestCase
 ## Module variables
 ##########################################################################
 
-EXPECTED_VERSION = "0.1"
+EXPECTED_VERSION = "0.2"
 
 ##########################################################################
 ## Initialization Tests
