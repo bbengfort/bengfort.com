@@ -7,7 +7,7 @@
 # Copyright (C) 2016 Bengfort.com
 # For license information, see LICENSE.txt
 #
-# ID: models.py [] benjamin@bengfort.com $
+# ID: models.py [11b57d0] benjamin@bengfort.com $
 
 """
 Model description of the default Wagtail home app.

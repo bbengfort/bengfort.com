@@ -7,7 +7,7 @@
 # Copyright (C) 2016 Bengfort.com
 # For license information, see LICENSE.txt
 #
-# ID: utils.py [] benjamin@bengfort.com $
+# ID: utils.py [8fcbaab] benjamin@bengfort.com $
 
 """
 Project level utilities and helper functions.

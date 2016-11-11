@@ -7,7 +7,7 @@
 # Copyright (C) 2016 Bengfort.com
 # For license information, see LICENSE.txt
 #
-# ID: __init__.py [] benjamin@bengfort.com $
+# ID: __init__.py [11b57d0] benjamin@bengfort.com $
 
 """
 The Wagtail home page application that manages the front end home page.

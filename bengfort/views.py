@@ -7,7 +7,7 @@
 # Copyright (C) 2016 Bengfort.com
 # For license information, see LICENSE.txt
 #
-# ID: views.py [] benjamin@bengfort.com $
+# ID: views.py [8fcbaab] benjamin@bengfort.com $
 
 """
 Default application views for the Bengfort.com project.

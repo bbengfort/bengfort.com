@@ -7,7 +7,7 @@
 # Copyright (C) 2016 Bengfort.com
 # For license information, see LICENSE.txt
 #
-# ID: bengfort_tags.py [] benjamin@bengfort.com $
+# ID: bengfort_tags.py [1c8762a] benjamin@bengfort.com $
 
 """
 Global tags for use across the Bengfort.com project

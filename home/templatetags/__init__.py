@@ -7,7 +7,7 @@
 # Copyright (C) 2016 Bengfort.com
 # For license information, see LICENSE.txt
 #
-# ID: __init__.py [] benjamin@bengfort.com $
+# ID: __init__.py [1c8762a] benjamin@bengfort.com $
 
 """
 Custom tags for the Bengfort.com project

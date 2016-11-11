@@ -7,7 +7,7 @@
 # Copyright (C) 2016 Bengfort.com
 # For license information, see LICENSE.txt
 #
-# ID: __init__.py [] benjamin@bengfort.com $
+# ID: __init__.py [741ab42] benjamin@bengfort.com $
 
 """
 A simple Wagtail blog implemented in the tutorial.
