@@ -7,7 +7,7 @@
 # Copyright (C) 2016 Bengfort.com
 # For license information, see LICENSE.txt
 #
-# ID: base.py [] benjamin@bengfort.com $
+# ID: base.py [11b57d0] benjamin@bengfort.com $
 
 """
 The common Django settings for the Bengfort.com site

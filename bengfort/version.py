@@ -7,7 +7,7 @@
 # Copyright (C) 2016 Bengfort.com
 # For license information, see LICENSE.txt
 #
-# ID: version.py [] benjamin@bengfort.com $
+# ID: version.py [11b57d0] benjamin@bengfort.com $
 
 """
 Helper module for managing versioning information.

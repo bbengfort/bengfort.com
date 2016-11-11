@@ -8,7 +8,7 @@
 # Copyright (C) 2016 Bengfort.com
 # For license information, see LICENSE.txt
 #
-# ID: manage.py [] benjamin@bengfort.com $
+# ID: manage.py [11b57d0] benjamin@bengfort.com $
 
 """
 Django default management commands, with some special sauce.

@@ -7,7 +7,7 @@
 # Copyright (C) 2016 Bengfort.com
 # For license information, see LICENSE.txt
 #
-# ID: bengfort.wsgi.py [] benjamin@bengfort.com $
+# ID: wsgi.py [11b57d0] benjamin@bengfort.com $
 
 """
 WSGI Config for the Bengfort.com website

@@ -25,8 +25,8 @@ The versioning uses a three part version system, "a.b.c" - "a" represents a majo
 
 ### Version 0.1
 
-* **tag**: [v0.1](#)
-* **deployment**: Pending
-* **commit**: [see tag](#)
+* **tag**: [v0.1](https://github.com/bbengfort/bengfort.com/releases/tag/v0.1)
+* **deployment**: Thursday, November 10, 2016
+* **commit**: [0efa4db](https://github.com/bbengfort/bengfort.com/commit/0efa4db8035f90f3eae52896fe56fd5c9caecd47)
 
 This initial release of the application simply deploys the Bengfort web app to Heroku, and implements the Wagtail CMS. It is really nothing special and is a pre-release. Feel free to ignore it!

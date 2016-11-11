@@ -7,7 +7,7 @@
 # Copyright (C) 2016 Bengfort.com
 # For license information, see LICENSE.txt
 #
-# ID: urls.py [] benjamin@bengfort.com $
+# ID: urls.py [11b57d0] benjamin@bengfort.com $
 
 """
 Application URL definition and routers.
