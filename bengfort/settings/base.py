@@ -124,6 +124,7 @@ INSTALLED_APPS = [
     'modelcluster',
     'taggit',
     'rest_framework',
+    'storages',
 
     # Django apps
     'django.contrib.admin',
@@ -201,6 +202,15 @@ STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 STATIC_ROOT = os.path.join(REPOSITORY, 'static')
 STATIC_URL = '/assets/'
 
+## Media Storage on Amazon S3
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+
+## AWS S3 Access Settings
+AWS_ACCESS_KEY_ID       = environ_setting("AWS_ACCESS_KEY_ID", "")
+AWS_SECRET_ACCESS_KEY   = environ_setting("AWS_SECRET_ACCESS_KEY", "")
+AWS_STORAGE_BUCKET_NAME = environ_setting("AWS_STORAGE_BUCKET_NAME", "")
+
+## Media paths and URL endpoints
 MEDIA_ROOT = os.path.join(REPOSITORY, 'media')
 MEDIA_URL = '/media/'
 

@@ -1,5 +1,5 @@
 {% extends "page.html" %}
-{% load wagtailcore_tags %}
+{% load wagtailcore_tags wagtailimages_tags %}
 
 {% block body_class %}template-blogindexpage{% endblock %}
 
@@ -14,9 +14,9 @@
 
     {% for post in posts %}
       {% with post=post.specific %}
+        {% image post.image width-400 %}
         <h2><a href="{% pageurl post %}">{{ post.title }}</a></h2>
-        {{ post.intro }}
-        {{ post.body|richtext }}
+        {{ post.excerpt }}
       {% endwith %}
     {% endfor %}
 
