@@ -105,6 +105,7 @@ INSTALLED_APPS = [
     # Bengfort.com apps
     'home',
     'search',
+    'blog',
 
     # Wagtail apps
     'wagtail.wagtailforms',
