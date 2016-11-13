@@ -27,7 +27,7 @@ The versioning uses a three part version system, "a.b.c" - "a" represents a majo
 
 * **tag**: [v0.2](https://github.com/bbengfort/bengfort.com/releases/tag/v0.2)
 * **deployment**: Friday, November 11, 2016
-* **commit**: [see tag](#)
+* **commit**: [22a0fd3](https://github.com/bbengfort/bengfort.com/commit/22a0fd3b14fbbc3f88716995536a75aa71f65d51)
 
 Another intermediate step in the wagtail managed application. Now the home page is a bit more dynamic and editable. The navbar will show all menu items associated with it. We've also implemented a blog applications for writing blog posts, related links, tags, and search are all functional as well. It still doesn't look pretty, but it's moving along.
 

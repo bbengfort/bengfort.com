@@ -51,4 +51,5 @@ def navbar(context, parent, calling_page=None):
         'calling_page': calling_page,
         'menuitems': menuitems,
         'request': context['request'],
+        'search_query': context.get('search_query', ''), 
     }

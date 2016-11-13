@@ -1,0 +1,59 @@
+{
+  "name": "Bengfort.com",
+  "description": "The web application for the Bengfort website.",
+  "repository": "https://github.com/bbengfort/bengfort.com",
+  "logo": "http://www.bengfort.com/assets/img/logo.png",
+  "website": "http://www.bengfort.com/",
+  "keywords": ["bengfort", "django", "guyana", "cookbook", "blog"],
+  "env": {
+    "DJANGO_SETTINGS_MODULE": {
+        "value": "bengfort.settings.production",
+        "description": "the settings module to use on heroku"
+    },
+    "SECRET_KEY": {
+        "generator": "secret",
+        "description": "the secret key to secure sessions and the database"
+    },
+    "EMAIL_HOST_USER": {
+        "value": "the gmail account to send email from the site",
+        "required": false,
+        "description": ""
+    },
+    "EMAIL_HOST_PASSWORD": {
+        "value": "the gmail account password for sending email",
+        "required": false,
+        "description": ""
+    },
+    "GOOGLE_OAUTH2_CLIENT_ID": {
+        "value": "the google oauth id for social authentication",
+        "required": false,
+        "description": ""
+    },
+    "GOOGLE_OAUTH2_CLIENT_SECRET": {
+        "value": "the google oauth secret for social authentication",
+        "required": false,
+        "description": ""
+    },
+    "AWS_ACCESS_KEY_ID": {
+        "value": "the aws access key id for s3 storages",
+        "required": false,
+        "description": ""
+    },
+    "AWS_SECRET_ACCESS_KEY": {
+        "value": "the aws secret key for s3 storages",
+        "required": false,
+        "description": ""
+    },
+    "AWS_STORAGE_BUCKET_NAME": {
+        "value": "the s3 bucket to store media on",
+        "required": false,
+        "description": ""
+    }
+  },
+  "scripts": {
+    "postdeploy": "django-admin.py migrate && django-admin.py load_initial_data && echo 'from wagtail.wagtailimages.models import Rendition; Rendition.objects.all().delete()' | django-admin.py shell"
+  },
+  "addons": [
+    "heroku-postgresql:hobby-dev"
+  ]
+}
