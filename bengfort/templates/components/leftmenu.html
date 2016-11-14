@@ -1,0 +1,31 @@
+    {% load staticfiles wagtailcore_tags %}
+
+    <!-- Left Menu -->
+    <div class="leftMenu">
+      <div class="leftmenuHead">
+        <div class="logoleft pull-left">
+          <a href="{% pageurl site_root %}"><img src="{% static 'img/logo.png' %}" alt=""></a>
+        </div>
+        <a href="#" class="leftclose pull-right">x</a>
+        <div class="clearfix"></div>
+      </div>
+      <div class="leftmenuScroll">
+        <nav class="leftmainnav">
+          <ul>
+            <li><a href="{% pageurl site_root %}">home pages</a></li>
+            {% for menuitem in menuitems %}
+            <li class="{% if menuitem.active %}active{% endif %}">
+              <a href="{% pageurl menuitem %}">{{ menuitem.title }}</a>
+            </li>
+            {% endfor %}
+            <li><a href="{% url 'wagtailadmin_home' %}">CMS</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="socialleft">
+        <a href="#"><i class="fa fa-facebook"></i></a>
+        <a href="#"><i class="fa fa-twitter"></i></a>
+        <a href="#"><i class="fa fa-google-plus"></i></a>
+        <a href="#"><i class="fa fa-linkedin"></i></a>
+      </div>
+    </div><!-- Left Menu Ends -->
