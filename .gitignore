@@ -40,3 +40,4 @@ nosetests.xml
 
 # Development assets
 bengfort/media
+design/
