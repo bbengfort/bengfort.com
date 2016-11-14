@@ -34,7 +34,10 @@
 
   </head>
   <body class="{% block body_class %}animat{% endblock %}">
-    {% wagtailuserbar %}
+    {% if user.is_authenticated %}
+      {% wagtailuserbar %}
+    {% endif %}
+
     {% block body %}{% endblock %}
 
     {# Global javascript #}
