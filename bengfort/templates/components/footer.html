@@ -1,21 +1,35 @@
+    {% load staticfiles wagtailcore_tags %}
     <footer class="footer">
       <div class="container">
         <div class="row">
-          <div class="col-xs-6">
-            <p class="text-muted">
-              <small>
-                Copyright &copy; 2016 Bengfort.com, All Rights Reserved
-              </small>
+
+          <!-- Dhaka style center content -->
+          <div class="col-lg-6 col-lg-offset-3 text-center">
+            <div class="footLogo">
+              <a href="/">
+                <img src="{% static 'img/logo_icon_light.png' %}" alt="">
+              </a>
+            </div>
+
+            <p class="copyrightText">
+              Copyright &copy; 2016 Bengfort.com &middot; All Rights Reserved
             </p>
-          </div>
-          <div class="col-xs-6">
-            <p class="text-right text-muted">
+
+            <div class="footSocial">
+              <a href="#"><i class="fa fa-facebook"></i></a>
+              <a href="#"><i class="fa fa-twitter"></i></a>
+              <a href="#"><i class="fa fa-instagram"></i></a>
+              <a href="#"><i class="fa fa-linkedin"></i></a>
+            </div>
+
+            <p class="apiStatusText">
               <small>
                 Bengfort.com v<span id="footerVersion">?</span>
                 &middot;
                 status: <span id="footerStatus"><i class="fa fa-circle"></i></span>
               </small>
             </p>
+
           </div>
         </div>
       </div>

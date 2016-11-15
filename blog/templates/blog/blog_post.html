@@ -4,33 +4,57 @@
 {% block body_class %}template-blogpage{% endblock %}
 
 {% block content %}
-    <div class="page-header">
-      <h1>{{ page.title }}</h1>
-      <p class="meta">{{ page.date }}</p>
 
-      {% if page.tags.all.count %}
-        <div class="tags">
-          <h3>Tags</h3>
-          {% for tag in page.tags.all %}
-            <a href="{% slugurl 'tags' %}?tag={{ tag }}"><button type="button">{{ tag }}</button></a>
-          {% endfor %}
+    <!-- Blog Post Content -->
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="slider noMarginBottom">
+          {% if page.image %}
+              {% image page.image fill-1170x537 %}
+          {% endif %}
         </div>
-      {% endif %}
+        <div class="gellarypostCont">
+          <h2 class="blogtitle gellary">
+            <a href="{{ page.url }}">{{ page.title }}</a>
+          </h2>
+          <div class="intro">
+            {{ page.intro|richtext }}
+          </div>
 
+          <div class="post">
+            {{ page.body|richtext }}
+          </div>
+        </div>
+
+        <div class="blogMeta gfullwidth">
+          <a href="#"><i class="fa fa-user"></i>{{ page.author }}</a>
+          <a href="#"> <i class="fa fa-clock-o"></i>{{ page.date }}</a>
+          <a href="#"><i class="fa fa-eye"></i>{{ page.views }} Views</a>
+
+          {% for tag in page.tags.all %}
+            <a class="pull-right" href="{% slugurl 'tags' %}?tag={{ tag }}">{{ tag }}</a>
+          {% endfor %}
+          <div class="clearfix"></div>
+        </div>
+
+        <div class="text-center">
+          <a class="commentSubmit" style="padding:14px;" href="{{ self.get_parent.url }}">Return to blog</a>
+        </div>
+
+      </div>
+    </div><!-- End Blog Post Content -->
+
+{% endblock %}
+
+{% block pagination %}
+  <section class="paginations">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="paginationIn">
+          </div>
+        </div>
+      </div>
     </div>
-
-    {% if page.image %}
-        {% image page.image width-400 %}
-    {% endif %}
-
-    <div class="intro">
-      {{ page.intro|richtext }}
-    </div>
-
-    <div class="post">
-      {{ page.body|richtext }}
-    </div>
-
-    <p><a href="{{ self.get_parent.url }}">Return to blog</a></p>
-
+  </section>
 {% endblock %}

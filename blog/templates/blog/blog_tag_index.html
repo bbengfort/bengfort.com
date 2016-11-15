@@ -1,27 +1,81 @@
 {% extends "page.html" %}
-{% load wagtailcore_tags %}
+{% load wagtailcore_tags wagtailimages_tags %}
 
 {% block body_class %}template-blogindexpage{% endblock %}
 
 {% block content %}
-    <div class="page-header">
-      {% if request.GET.tag|length %}
-      <h1>Showing pages tagged &ldquo;{{ request.GET.tag }}&rdquo;</h1>
-      {% else %}
-      <h1>Specify a Tag</h1>
-      {% endif %}
+
+    <!-- Tag Header and Info -->
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h3 class="widgetTitle">
+          {% if request.GET.tag|length %}
+          Showing pages tagged &ldquo;{{ request.GET.tag }}&rdquo;
+          {% else %}
+          Please Specify a Tag
+          {% endif %}
+        </h3>
+      </div>
     </div>
 
+    <!-- Blog Grid -->
+    <div class="row">
     {% for post in posts %}
-      <p>
-        <strong><a href="{% pageurl post %}">{{ post.title }}</a></strong><br />
-        <small>Revised: {{ post.latest_revision_created_at }}</small><br />
-        {% if post.author %}
-          <p>By  {{ post.author.profile }}</p>
-        {% endif %}
-      </p>
+      <div class="col-lg-4">
+        <div class="singleBlog">
+          <div class="blogImg">
+            {% image post.image fill-370x252 %}
+          </div>
+          <div class="blogDec">
+            <h2 class="blogtitle">
+              <a href="{% pageurl post %}">{{ post.title }}</a>
+            </h2>
+            <div style="max-height:180px; overflow-y:scroll;">
+              <p><small>Revised: {{ post.latest_revision_created_at }}</small></p>
+              <p>{{ post.excerpt }}</p>
+            </div>
+          </div>
+          <div class="blogMeta">
+            <a href="#"><i class="fa fa-user"></i>{{ post.author }}</a>
+            <a href="#"> <i class="fa fa-clock-o"></i>{{ post.date }}</a>
+            <a href="#"><i class="fa fa-eye"></i>{{ post.views }} Views</a>
+          </div>
+        </div>
+      </div>
     {% empty %}
-      <p>No pages found with that tag.
+      <div class="text-center" style="padding-top:40px;">
+        <p class="lead">No pages found with that tag.</p>
+      </div>
     {% endfor %}
+    </div>
 
+{% endblock %}
+
+{% block pagination %}
+  <section class="paginations">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="paginationIn">
+            <a href="{% if posts.has_previous %}?page={{ posts.previous_page_number }}{% else %}#{% endif %}" class="prev">
+              <i class="fa fa-long-arrow-left"></i>
+            </a>
+
+            {% for idx in posts.paginator.page_range %}
+              {% if posts.number == idx %}
+                <span class="current">{{ idx }}</span>
+              {% else %}
+                <a href="?page={{idx}}">{{idx}}</a>
+              {% endif %}
+            {% endfor %}
+
+            <a href="{% if posts.has_next %}?page={{ posts.next_page_number }}{% else %}#{% endif %}" class="next">
+              <i class="fa fa-long-arrow-right"></i>
+            </a>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 {% endblock %}

@@ -23,11 +23,19 @@ The release versions that are deployed to the web servers are also tagged in Git
 
 The versioning uses a three part version system, "a.b.c" - "a" represents a major release that may not be backwards compatible. "b" is incremented on minor releases that may contain extra features, but are backwards compatible. "c" releases are bug fixes or other micro changes that developers should feel free to immediately update to.
 
+### Version 0.3
+
+* **tag**: [v0.3](https://github.com/bbengfort/bengfort.com/releases/tag/v0.3)
+* **deployment**: Monday, November 14, 2016
+* **commit**: [see tag](#)
+
+Implemented a premium theme from ThemeForest, Dhaka. Also brought over the logo assets we got from Logo Nerds and other design elements. The site looks a bit better now, and we've updated the blog model to handle theme-specific information and context. Still a lot of work to do, but we can probably call this a first official release. 
+
 ### Version 0.2
 
 * **tag**: [v0.2](https://github.com/bbengfort/bengfort.com/releases/tag/v0.2)
 * **deployment**: Friday, November 11, 2016
-* **commit**: [see tag](#)
+* **commit**: [22a0fd3](https://github.com/bbengfort/bengfort.com/commit/22a0fd3b14fbbc3f88716995536a75aa71f65d51)
 
 Another intermediate step in the wagtail managed application. Now the home page is a bit more dynamic and editable. The navbar will show all menu items associated with it. We've also implemented a blog applications for writing blog posts, related links, tags, and search are all functional as well. It still doesn't look pretty, but it's moving along.
 

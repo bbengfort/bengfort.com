@@ -1,0 +1,40 @@
+    {% load staticfiles wagtailcore_tags %}
+
+    <!-- Header Top -->
+    <section class="headerTop">
+      <div class="container">
+        <div class="row">
+
+          <!-- Header Left -->
+          <div class="col-lg-4 col-xs-2">
+            <div class="menuBar" id="leftTrigger">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+
+          <!-- Header Center -->
+          <div class="col-lg-4 col-xs-8 text-center">
+            <div class="logo">
+              <a href="{% pageurl site_root %}" title="{{ site_root.title}}">
+                <img src="{% static 'img/logo.png' %}" alt="Bengfort.com" />
+              </a>
+            </div>
+          </div>
+
+          <!-- Header Right -->
+          <div class="col-lg-4 col-xs-2 text-right">
+            <div class="search">
+              <a href="/search">
+                <i class="fa fa-search"></i>
+              </a>
+              <form role="search" action="{% url 'search' %}" method="get" class="searchForm">
+                <input type="text" name="query" class="form-control" placeholder="Search &hellip;" value="{{ search_query }}" />
+              </form>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section><!-- Header Top Ends -->

@@ -2,16 +2,29 @@
 {% load bengfort_tags %}
 
 {% block body %}
-
-  {% block menu %}
+  <div id="page">
+  {% block header %}
       {% get_site_root as site_root %}
+      {% include 'components/leftmenu.html' %}
+      {% include 'components/header.html' %}
       {% navbar parent=site_root calling_page=self %}
   {% endblock %}
 
-  <div class="container">
-    {% block content %}{% endblock %}
+  <!-- Main Page Content -->
+  <section class="mainContent">
+    <div class="container">
+      {% block content %}{% endblock %}
+    </div>
+  </section><!-- Main Page Content Ends -->
+
+  {# After Main Content #}
+  {% block pagination %}{% endblock %}
+
+  {# Instagram Photo Feed #}
+  {% block instagram %}{% endblock %}
+
+  {% block footer %}
+    {% include 'components/footer.html' %}
+  {% endblock %}
   </div>
-
-  {% include 'components/footer.html' %}
-
 {% endblock %}
