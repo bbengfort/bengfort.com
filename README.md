@@ -23,6 +23,14 @@ The release versions that are deployed to the web servers are also tagged in Git
 
 The versioning uses a three part version system, "a.b.c" - "a" represents a major release that may not be backwards compatible. "b" is incremented on minor releases that may contain extra features, but are backwards compatible. "c" releases are bug fixes or other micro changes that developers should feel free to immediately update to.
 
+### Version 0.3
+
+* **tag**: [v0.3](https://github.com/bbengfort/bengfort.com/releases/tag/v0.3)
+* **deployment**: Monday, November 14, 2016
+* **commit**: [see tag](#)
+
+Implemented a premium theme from ThemeForest, Dhaka. Also brought over the logo assets we got from Logo Nerds and other design elements. The site looks a bit better now, and we've updated the blog model to handle theme-specific information and context. Still a lot of work to do, but we can probably call this a first official release. 
+
 ### Version 0.2
 
 * **tag**: [v0.2](https://github.com/bbengfort/bengfort.com/releases/tag/v0.2)
