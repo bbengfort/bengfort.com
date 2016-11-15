@@ -18,6 +18,8 @@ Models for our blog pages
 ##########################################################################
 
 from django.db import models
+from django.conf import settings
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from taggit.models import TaggedItemBase
 from modelcluster.fields import ParentalKey
@@ -63,7 +65,24 @@ class BlogIndex(Page):
         Update the context to include the blog posts in the index.
         """
         context = super(BlogIndex, self).get_context(request)
-        context['posts'] = self.get_blog_posts()
+        posts = self.get_blog_posts()
+
+        # Pagination
+        page = request.GET.get('page')
+        page_size = 1
+        if hasattr(settings, 'BLOG_PAGINATION_PER_PAGE'):
+            page_size = settings.BLOG_PAGINATION_PER_PAGE
+
+        if page_size is not None:
+            paginator = Paginator(posts, page_size)
+            try:
+                posts = paginator.page(page)
+            except PageNotAnInteger:
+                posts = paginator.page(1)
+            except EmptyPage:
+                posts = paginator.page(paginator.num_pages)
+
+        context['posts'] = posts
         return context
 
 
@@ -131,7 +150,13 @@ class BlogPost(Page):
     excerpt = models.TextField(blank=True, help_text='A small excerpt describing the post.')
     body    = RichTextField(blank=True, help_text='The body of the blog post')
     tags    = ClusterTaggableManager(through='blog.BlogPostTag', blank=True)
-    image   =  models.ForeignKey(
+    views   = models.IntegerField(default=0, blank=True, editable=False)
+    author  = models.ForeignKey(
+        settings.AUTH_USER_MODEL, blank=True, null=True,
+        verbose_name='Author', on_delete=models.SET_NULL,
+        related_name='author_pages',
+    )
+    image   = models.ForeignKey(
         'wagtailimages.Image',
         null=True, blank=True, on_delete=models.SET_NULL, related_name='+',
         help_text='The featured image associated with the post',
@@ -149,6 +174,7 @@ class BlogPost(Page):
         MultiFieldPanel([
             FieldPanel('date'),
             FieldPanel('tags'),
+            FieldPanel('author'),
         ], heading='Blog information'),
         FieldPanel('body', classname='full'),
         InlinePanel('related_links', label="Related links"),
@@ -163,3 +189,29 @@ class BlogPost(Page):
     # Parent page / subpage type rules
     parent_page_types = ['blog.BlogIndex']
     subpage_types = []
+
+    def serve(self, request):
+        """
+        Override the serve method to implement page tracking.
+        """
+
+        # Check if the view marker is in the user session
+        viewkey = "viewed_blog_post_{}".format(self.id)
+        if not request.session.get(viewkey, False):
+
+            # Increment the views and save
+            self.views += 1
+            self.save()
+
+            # Add the view key to the session
+            request.session[viewkey] = True
+
+        return super(BlogPost, self).serve(request)
+
+    def save_revision(self, *args, **kwargs):
+        """
+        Make sure that the author is saved with the revision.
+        """
+        if not self.author:
+            self.author = self.owner
+        return super(BlogPost, self).save_revision(*args, **kwargs)

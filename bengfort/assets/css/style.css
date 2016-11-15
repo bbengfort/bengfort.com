@@ -395,6 +395,15 @@ body.menuOpened{
 .singleSlide{
     position: relative;
 }
+
+.overlay {
+    background: #111111;
+}
+
+.overlay img {
+    opacity: 0.5;
+}
+
 .silderCont {
     bottom: 0;
     height: 75px;
@@ -478,6 +487,7 @@ body.menuOpened{
 .singleBlog{
     margin-bottom: 50px;
 }
+
 .blogtitle {
     font-size: 20px;
     font-weight: 700;

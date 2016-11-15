@@ -17,6 +17,12 @@
     </div>
   </section><!-- Main Page Content Ends -->
 
+  {# After Main Content #}
+  {% block pagination %}{% endblock %}
+
+  {# Instagram Photo Feed #}
+  {% block instagram %}{% endblock %}
+
   {% block footer %}
     {% include 'components/footer.html' %}
   {% endblock %}
