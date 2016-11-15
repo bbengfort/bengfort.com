@@ -1,15 +1,64 @@
 {% extends "page.html" %}
-{% load wagtailcore_tags %}
+{% load wagtailcore_tags wagtailimages_tags %}
 
 {% block body_class %}template-homepage{% endblock %}
 
 {% block content %}
-    <div class="page-header">
-      <h1>{{ page.title }}</h1>
+
+    <!-- Blog Carousel -->
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <div class="slider">
+
+          {% for post in posts %}
+            {% with post=post.specific %}
+              {% if post.image %}
+              <div class="singleSlide">
+                <div class="overlay">
+                  {% image post.image fill-1170x537 %}
+                </div>
+                <div class="silderCont">
+                  <h1>{{ post.title }}</h1>
+                  <div class="metaCont">
+                    <a href="#"><i class="fa fa-user"></i>{{ post.author }}</a>
+                    <a href="#"> <i class="fa fa-clock-o"></i>{{ post.date }}</a>
+                    <a href="#"><i class="fa fa-eye"></i>{{ post.views }} Views</a>
+                  </div>
+                </div>
+              </div>
+              {% endif %}
+            {% endwith %}
+          {% endfor %}
+
+        </div>
+      </div>
     </div>
 
-    <div style="min-height:400px;">
-    {{ page.body|richtext }}
+    <!-- Tag Header and Info -->
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h3 class="widgetTitle">
+          Welcome to Bengfort.com!
+        </h3>
+
+        <div class="lead">
+        {{ page.body|richtext }}
+        </div>
+
+      </div>
     </div>
 
+{% endblock %}
+
+{% block pagination %}
+  <section class="paginations">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="paginationIn">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 {% endblock %}
