@@ -68,8 +68,8 @@ class BlogIndex(Page):
         posts = self.get_blog_posts()
 
         # Pagination
-        page = request.GET.get('page')
-        page_size = 1
+        page = request.GET.get('page') or 1
+        page_size = 10
         if hasattr(settings, 'BLOG_PAGINATION_PER_PAGE'):
             page_size = settings.BLOG_PAGINATION_PER_PAGE
 
@@ -78,7 +78,7 @@ class BlogIndex(Page):
             try:
                 posts = paginator.page(page)
             except PageNotAnInteger:
-                posts = paginator.page(1)
+                posts = paginator.page(10)
             except EmptyPage:
                 posts = paginator.page(paginator.num_pages)
 

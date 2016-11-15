@@ -225,6 +225,8 @@ WAGTAIL_SITE_NAME = "Bengfort.com"
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
 BASE_URL = 'http://bengfort.com'
 
+# Blog Pagination
+BLOG_PAGINATION_PER_PAGE = 10
 
 ##########################################################################
 ## Django REST Framework
